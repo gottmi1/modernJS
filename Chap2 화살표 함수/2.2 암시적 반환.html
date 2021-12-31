@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    //화살표 함수를 사용하면 명시적인 반환을 생략하고 다음과 같이 반환할 수도 있음(return없이)
+    const greeting = name => `hello ${name}`;
+    console.log(greeting(`merry`));
+
+    //ES5의 함수와 나란히 비교해보면
+
+    const oldFuntion = function(name) {
+      console.log("hello " + name);
+    }
+    console.log(oldFuntion('aas'));
+
+    const newFunction = name => `hello ${name}`;
+
+    console.log(newFunction('Kim'));
+
+    //함수의 결과가 같지만 새로 도입된 문법을 사용하면 더 간결해진다.
+    //하지만 간결함보다 중요한 건 가독성이다. 프로젝트의 팀원이 ES6의 문법을 숙지하지 못하였을 경우에는
+
+    const arrowFunction = (name) => {
+      return `hello ${name}`;
+    }
+    //이렇게 써주는 것이 좋다.
+
+
+
+
+    //객체 리터럴을 암시적으로 반환해야 한다면 이런 코드를 사용할 수 있다.
+
+    const race = "100m dash";
+    const runner = ["Usain Bolt", "Justin Gatlin", "Asafa Powell"];
+
+    const results = 
+      runner.map((runner, i) => ({name: runner, race, place : 1+ i}));
+
+    console.log(results);
+
+
+  </script>
+
+</body>
+</html>
