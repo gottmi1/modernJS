@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 다음은 this키워드의 상속 문제 때문에 화살표 함수를 사용하면 문제가 될 수 있는 상황이다.
+
+    // const btn = document.querySelector('div');
+
+    // btn.addEventListener('click', () => {
+    //   //여기서 this는 window객체를 가르키기 때문에 오류가 남.
+    //   this.classList.toggle('on');
+    // })
+
+    const person1 = {
+      age: 10,
+      grow: function() {
+        this.age++;
+        console.log(this.age);
+      },
+    }
+
+    person1.grow();//11
+
+    const person2 = {
+      age: 10,
+      grow: () => {
+        this.age++
+        console.log(this.age);
+      }
+    }
+
+    person2.grow();//NaN을 반환
+
+    console.log(person2.age);
+
+    //화살표 함수와 일반 함수의 또 따른 차이점은 arguments 객체에 대한 접근 방식이다.
+
+    //arguments 객체는 함수 내부에서 접근할 수 있는 배열 객체이며, 해당 함수에 전달된 인수의 값을 담고있다. 
+
+    function example() {
+      console.log(arguments[1]);
+    }
+
+    example(1,2,3);
+
+    //이와 같이 배열 표기법 arguments[]을 사용하면 인수에 접근할 수 있다.
+
+    //this키워드와 비슷하게, 화살표 함수에서 arguments객체는 부모 스코프의 값을 상속한다.
+
+    // const showWinner = () => {
+    //   const winner = arguments[0]
+    //   console.log(`${winner} was thi winner`);
+    // }
+
+    // showWinner("a","b","c");
+
+    //위 코드는 57번째 줄에서 오류를 반환하는데, 함수에 전달된 모든 인수에 접근하려면 기존 함수 표기법이나 스프레드 문법을 사용하면 된다.
+
+    //여기서 arugments는 변수 이름이 아닌 키워드임을 유의.
+    // 화살표 함수로 arguments에 접근하는 방법은 다음과 같다.
+
+    const showWinner = (...args) => {
+      const winner = args[1];
+      console.log(`${winner} was the winner`);
+    }
+
+    showWinner("a","b","c");
+
+    // 화살표를 일반 함수로 바꾸려면
+
+    // const showWinner = function() {
+    //   const winner = arguments[0];
+    //   console.log(`${winner} was the winner`)
+    // }
+
+    // showWinner('a','b','c')
+
+    (...arg) => {
+      console.log(arg);
+    }
+
+
+
+  </script>
+
+</body>
+</html>

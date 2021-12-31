@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+    .opening{
+      background-color: red;
+    }
+
+  </style>
+
+</head>
+<body>
+  
+  <div class="box open">
+    This is a box
+  </div>
+
+  
+
+  <script>
+
+  // 화살표 함수 안에서 this키워드를 사용할 땐 일반 함수와는 다르게 적용하므로 주의해야함.
+  // 화살표 함수 안에서의 this는 상위 스코프에 상속된다.
+  // 이런 특성은 다음과 같은 경우에 유용하게 사용할 수 있음.
+
+  const box = document.querySelector('.box');
+
+  box.addEventListener('click', function() {
+    this.classList.toggle('opening');
+    setTimeout(function() {
+      this.classList.toggle('opening');
+    }, 500);
+  })
+  //이 코드의 문제는 첫 번쨰 this가 const box에 할당 되었지만 셋 타임아웃 내부의 두 번째 this는 window객체로 설정된다는 점이어서 오류가 뜬다는 점이다.
+  //화살표 함수가 부모스코프 에서의 this값을 상속한다는 것을 인지하면 셋 타임아웃을 => {} 로 수정해 문제를 고칠 수 있음.
+  //여기서 두 번째 this는 부모로 부터 상속되어 const box로 설정됨.
+
+
+
+
+
+  </script>
+
+</body>
+</html>
