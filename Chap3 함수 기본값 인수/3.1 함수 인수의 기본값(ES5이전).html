@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    //ES5 이전에는 함수 인수의 기본값 (default value)를 설정하는 것이 쉽지 않았다.
+
+    function getLocation(city, country, continent) {
+      if (typeof country === 'undefined') {
+        country = 'Italy';
+      }
+      if (typeof continent === 'undefined') {
+        continent = 'Europe';
+      }
+      console.log(continent, country, city);
+    }
+
+    getLocation(undefined,undefined, 'Milan');
+    getLocation(undefined,'Frnace','Pairs',);
+
+  </script>
+
+</body>
+</html>

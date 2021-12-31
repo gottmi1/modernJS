@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h1>function abc({키 = 밸류, 키 = 밸류, 키 = 밸류 } ={}) {리턴 값}</h1>
+  <h2>함수를 선언할 때 이와같이 설정하면 매개변수를 어떻게 전달하든 상관없이 인수를 객체로 만들 수가 있다<br /> ={}이 포인트임</h2>
+
+  <script>
+
+    //Es6에서는 함수 기본값 인수를 매우 쉽게 설정할 수 있다.
+
+    function calculatePrice2({total, tax = 0.1, tip=0.05}) {
+      //tax나tip에 값을 할당하지 않으면 기본값으로 위에 넣은 값이 쓰인다.
+      return total + (total * tax) + (total * tip);
+    }
+
+    console.log(calculatePrice2(100,0.15)); 
+    //tip에 0.15를 할당하려 했지만 이렇게 하면 tax에 0.15가 할당될 것이다. 이럴떄 tax자리에 undefined를 넣어도 작동하지만, 더 깔끔한 방법이 있음.
+    //디스트럭처링을 통해 코드를 다음과 같이 바꿔 쓸 수 있다.
+
+    function calculatePrice({total = 0, tax = 0.1, tip = 0.05,} ={}) {
+      return total + (total * tax) + (total * tip);
+    }
+
+    const bill = calculatePrice({tip:0.15, total:150});
+    console.log(bill); //187.5
+
+    //함수의 인수를 객체로 만들었다. 함수를 호출하면 매개변수가 주어진 키에 맞춰서 입력되기 때문에, 매개변수의 순서를 걱정할 필요가 없다.
+
+    //앞의 예에서는 tip의 기본값은 .05지만 0.15로 덮어 씌웠고, tax는 기본값으로 유지되었다.
+    //이 코드에서 다음 부분에 주목하면
+
+    // {total = 0, tax = .1, tip = .05} = {}
+    // 여기서 인수 객체를 빈 객체로 기본 설정하지 않고(즉 ={}를 빼고) 선언한 다음 아무 매개변수 없이 caculatePrice를 실행하면 디스트럭쳐 프로퍼티 오류가 뜬다.
+
+    // = {}를 추가해야 인수를 기본적으로 객체로 설정한다. 함수에 매개변수를 어떻게 전달하든 상관없이 인수는 객체가 된다.
+    console.log(calculatePrice({}));
+    console.log(calculatePrice());
+    console.log(calculatePrice(undefined));
+    //결과값 전부 0
+
+    // 인수로 무엇을 전달했는지에 상관없이 total, tax, tip 세 가지 기본속성을 가진 객체로 기본 설정되어있다.
+
+    function caculate(total,tax=.1,tip=.05) {
+      return total + (total*tax) + (total*tip);
+    }
+
+    console.log(caculate(10));
+
+    var b =3;
+    function muti(a, b = 2) {
+      return a * b;
+    }
+
+    console.log(muti(5));
+
+  </script>
+
+</body>
+</html>
