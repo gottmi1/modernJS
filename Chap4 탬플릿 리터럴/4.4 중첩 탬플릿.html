@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // 다음과 같이 탬플릿안에 탬플릿을 중첩시키는 것도 편리하다.
+
+    const people = [{
+      age: '27',
+      name : "jinwon"
+    },
+    {
+      age: '25',
+      name : "jinwon2"
+    },
+    {
+      age : '33',
+      name : 'jinwon3'
+    }
+  ]
+
+  const markup = `
+  <ul>
+    ${people.map(person => `<li> ${person.name}</li>`)}
+  </ul>
+  `;
+  console.log(markup);
+
+
+  // map함수를 사용하여 people의 각 원소에 대해 반복 동작을 수행하고, people 내에 있는 name을 담아 li태그를 표시했다.
+  </script>
+
+</body>
+</html>

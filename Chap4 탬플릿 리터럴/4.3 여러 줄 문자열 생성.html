@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // 각 행마다 백슬러시\ 를 삽입해야 해 귀찮다
+    var text = "hello, \ my name is Albert \ how are you?\ ";
+    console.log(text);
+
+    // ES5에서 html프래그먼트 등에 사용할 여러 줄로 이뤄진 문자열을 다음과 같이 구현했다.
+
+    const content = `hello, 
+    my name is Albert 
+    how are you?`;
+    console.log(content);
+
+    //ES6에선 전체를 백틱으로 감싸기만 하면 된다.
+
+
+  </script>
+
+</body>
+</html>

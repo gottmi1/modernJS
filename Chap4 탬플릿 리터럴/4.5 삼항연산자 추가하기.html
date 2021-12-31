@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    //삼항연산자를 사용하면 탬플릿 문자열 내에 로직을 쉽게 추가할 수 있다.
+
+    const isDiscounted = false;
+    function getPrice() {
+      console.log(isDiscounted ? '$10' : '$20');
+    }
+    getPrice();
+
+    // ?는 앞의 조건이 true일 때 반환되는 값이고, :는 앞의 조건이 false일 때 반환되는 값이다.
+
+    const artist = {
+      name: 'IU',
+      age:'30',
+      // song : 'StrawberryMoon'
+    }
+
+    const artist2 = {
+      name :'PARKHyoShin',
+      age : '45?',
+      song : 'WildFlower'
+    }
+
+    //artist 객체에 song 프로퍼티가 있을 때만 문장에 추가하고, 없으면 아무것도 반환하지 않음
+    const text = `
+      <div>
+        <p>
+          ${artist.name} is ${artist.age} years old${artist.song ? ` and wrote the song ${artist.song}` : '.'}
+          ${artist2.name} is ${artist2.age} years old${artist2.song ? ` and wrote the song ${artist2.song}` : '.'}
+
+        </p>
+      </div>
+    `
+    console.log(text);
+
+
+  </script>
+
+</body>
+</html>
