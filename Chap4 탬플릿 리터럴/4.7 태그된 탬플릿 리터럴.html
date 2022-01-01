@@ -24,11 +24,12 @@
 
       personAge > 50 ? ageStr = "grandpa" : ageStr = "youngster"
 
-      return personName + str + ageStr
+      return personName + str + ageStr + "!"
     }
 
     let sentence = myTag`that ${person} is a ${age} !`;
     console.log(sentence); 
+    document.write(sentence);
 
   </script>
   
