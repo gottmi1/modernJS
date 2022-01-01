@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    let hungry = "yes";
+    let full = "no";
+
+    console.log(hungry,full);
+    //yes no
+    [hungry, full] = [full , hungry];
+    //서로 순서 변경
+    console.log(hungry,full);
+    //no yes
+
+    let arr = ["one","two","three"];
+    const [one , two , three] = arr
+
+    console.log(one);
+    console.log(two);
+    console.log(three);
+
+  </script>
+
+</body>
+</html>
