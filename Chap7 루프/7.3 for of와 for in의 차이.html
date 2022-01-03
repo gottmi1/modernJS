@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    //두 문법의 차이점은 다음 예를 보면 알 수 있다.
+
+    let list = [4,5,6];
+
+    //for...in은 키의 목록을 반환한다.
+    for (let i in list) {
+      console.log(i);
+    }
+    //결과: 0 1 2 , list에 있는 모든 값들의 index값을 반환했다.
+
+    // for...of는 값을 반환한다.
+    for (let i of list) {
+      console.log(i);
+    }
+    //결과: 4 5 6 , list에 있는 모든 키의 값을 반환했다.
+
+  </script>
+
+</body>
+</html>
