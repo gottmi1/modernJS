@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 다음은 ES5에서 객체의 속성을 동적으로 정의하는 방법이다.
+    var name = "myname";
+    // 빈 객체를 생성
+    var person = {};
+    // 객체를 업데이트한다.
+    person[name] = "Jinwon";
+    console.log(person.myname);
+    // Jinwon
+
+    // 이렇게 먼저 객체를 생성한 다음 수정해야만 했다. 그러나 ES6에서는 두 가지를 동시에 할 수 있다.
+
+    const name2 = "myname";
+    const person2 = {
+      [name2] : "Jinwon"
+    };
+    console.log(person2.myname);
+    // Jinwon
+
+
+    // quiz
+
+    // 다음 코드를 간결하게 리팩토링
+
+    // const animal = {
+    //   name: a,
+    //   age: b,
+    //   breed: c
+    // }
+    // // ↓
+    // const animal2 = {
+    //   name,age,breed
+    // };
+
+    const favoriteColor = "Green";
+    const person11 = {
+      Color
+    }
+    console.log(person11.color);
+  </script>
+
+</body>
+</html>

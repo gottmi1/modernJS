@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 다음은 ES5의 예이다.
+  const person = {
+    nmae : "Jinwon",
+    greet : function() {
+      console.log("Hello");
+    }
+  };
+  person.greet();
+
+  // 객체에 함수를 추가하려면 function 키워드를 사용해야 했다. ES6에서는 이것이 더 쉬워졌다.
+
+  const person2 = {
+    name : "Jinwon",
+    greet() {
+      console.log("Hello");
+    }
+  }
+  person2.greet();
+
+  // function 키워드가 없고, 코드는 더 짧아졌지만 동일한 동작을 수행한다.
+  // 화살표 함수는 익명함수라는 것을 기억하고 다음 예제를 살펴보자.
+
+  // 다음 코드는 작동하지 않는다. 함수에 접근하기 위한 키가 필요하다.
+  // const person3 = {
+  //   () => { console.log("hello")};
+  // }
+  const person3 = {
+    greet: () => { console.log("hello")}
+  }
+  console.log(person3.greet());
+
+  </script>
+
+</body>
+</html>
