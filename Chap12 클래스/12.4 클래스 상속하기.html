@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 기존 클래스로부터 상속된 새로운 클래스를 만들려면 extends 키워드를 사용한다.
+
+    // 기존 클래스
+    class Person {
+      constructor(name,age) {
+        this.name = name;
+        this.age = age;
+      }
+      greet() {
+        console.log(`Hi. my name is ${this.name} and I'm ${this.age} years old` );
+      }
+    }
+
+    // 상속을 통해 만든 새 클래스
+
+    class Adult extends Person {
+      constructor(name, age, work) {
+        // this.name = name;
+        // this.age = age; 아래 super()으로 대체해서 써야함.
+        super(name,age);
+        this.work = work;
+      }
+    }
+
+    const alberto = new Adult("Alberto",26,"software developer");
+    // 오류가 발생한다
+    // 오류 메시지는 새로운 클래스에서 this를 사용하기 전에 super()을 호출하라는 내용이다.
+    // 즉 Adult를 만들기에 앞서 Person을 만들어야 한다는 것이다. 생성자 내부에서 super()를 호출하면 Person이 만들어진다.
+
+    // 여기서 왜 super(name, age)형태로 호출했을까? Adult 클래스는 Person으로 부터 이름과 나이를 상속받기 때문에 Person을 다시 선언하고 초기화할 필요가 없다. super()생성자가 하는일이 바로 이것이다.
+
+    console.log(alberto.age);
+    // 26
+    console.log(alberto.work);
+    // software developer
+    alberto.greet();
+    // Hi. my name is Alberto nad I'm 26 years old.
+
+    // Adult는 Person의 모든 속성과 메서드를 상속했음을 알 수 있다.
+
+  </script>
+
+</body>
+</html>

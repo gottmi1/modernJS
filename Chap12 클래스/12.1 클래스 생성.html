@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // MDN에서 클래스는 다음과 같이 설명한다.
+
+    // 클래스는 일차적으로 자바스크립트의 기존 프로토타입 기반 상속에 대한 문법적 설탕이다.
+    // 클래스 문법이 자바스크립트에 새로운 객체 지향 상속 모델을 도입하는 것은 아니다.
+
+    // 클래스를 살펴보기 전에 프로토타입 상속을 먼저 다시 복습해보자.
+
+    function Person(name,age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.greet = function() {
+      console.log("Hello, My name is " + this.name);
+    }
+
+    const alberto = new Person("Alberto",26);
+    const caroline = new Person("Caroline",26);
+
+    alberto.greet();
+    caroline.greet();
+
+    // Person의 프로토타이벵 새 메서드를 추가해서 Person 객체의 인스턴스들이 접근할 수 있도록 만들었다.
+
+    // 프로토 타입 상속을 위한 코드가 어떻게 작성되는지 살펴봤으니 이제 클래스를 살펴보자.
+
+
+
+
+
+    // 12.1 클래스 생성
+
+    // 클래스를 만드는 방법에는 두 가지가 있다. 클래스 선언과 클래스 표현식이다.
+    
+    // 클래스 선언
+    class Person2 {
+
+    }
+    // 클래스 표현식
+    const person = class Person2 {
+
+    }
+
+    // 클래스 선언 및 클래스 표현식은 ☆호이스팅되지 않는다☆.
+    // 클래스에 접근하기 전에 클래스를 선언하지 않으면 레퍼런스 에러가 발생한다.
+
+    // 생성자 메서드를 추가한 것을 제외하면 프로토타입 방식과 큰 차이는 없다(생성자를 하나만 추가해야 함에 주의. 클래스에 생성자 메서드가 두 개이상 포함된경우 신택스 에러가 발생한다.)
+    class Person3 {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      greet() {
+        console.log(`Hi, my anme is ${this.name} and I'm ${this.age} years old.`);
+      } // 메서드와 메서드 사이에는 쉼표가 없음
+      farewell() {
+        console.log('goodbye friend.');
+      }
+    }
+
+    const alberto2 = new Person3("Alberto",26);
+
+    alberto2.greet();
+    alberto2.farewell();
+    // 모든 것이 이전과 동일하게 작동된다. 앞에서 언급했듯 클래스는 프로토타입 방식을 대신하는 문법적 설탕일 뿐이다.
+
+  </script>
+
+</body>
+</html>
