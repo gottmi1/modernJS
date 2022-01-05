@@ -39,11 +39,12 @@
     console.log(fruitsName);
     // 다음과 같이 단순화 할수도 있다.
 
-    const fruits2 = Array.from(document.querySelectorAll('.fruits p'));
+    const fruits2 = Array.from(document.querySelectorAll('.fruits p')); // 노드리스트로 나올걸 그냥 처음부터 배열로 만들어서 받음
+    console.log(fruits2)
     const fruitsName2 = fruits2.map(fruit2 => fruit2.textContent);
     console.log(fruitsName2);
 
-    // 이와 같이 furits를 배열로 변환했다. 따라서 amp등 배열이 제공하는 모든 메서드를 사용할 수 있는 상태가 되었다.
+    // 이와 같이 furits를 배열로 변환했다. 따라서 map등 배열이 제공하는 모든 메서드를 사용할 수 있는 상태가 되었다.
     // 전체 태그가 아닌 p 태그의 textContent만 새로운 배열로 만들었다.
     
     // 또한 Array.from()의 두 번째 인수를 이용해서, 배열에 map함수를 적용한 것과 동일한 기능을 하는 코드를 작성할 수도 있다.
