@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // Promise.resolve() 와 Promise.reject()는 자동으로(즉시) 성공하거나 실패하는 프로미스를 생성한다.
+    // Promise.resolve() 
+    Promise.resolve('Success')
+    .then(
+      function(value){
+      console.log('Success');
+      // Success
+    }, 
+    function(value) {
+      console.log('fail');
+    });
+
+    // Promise.resolve()는 즉시 프로미스를 성공하게 하므로 .then절이 출력된다.
+
+    // Promise.reject()
+    Promise.reject(new Error('fail')).then(function() {
+      // not called
+    }, function(error){
+      console.log(error);
+      // Error: fail
+    }
+    )
+
+    // Promise.reject()는 즉시 프로미스를 실패하게 하므로, 두 번째 함수가 출력된다.
+
+
+  </script>
+</body>
+</html>

@@ -24,7 +24,7 @@
     //tip에 0.15를 할당하려 했지만 이렇게 하면 tax에 0.15가 할당될 것이다. 이럴떄 tax자리에 undefined를 넣어도 작동하지만, 더 깔끔한 방법이 있음.
     //디스트럭처링을 통해 코드를 다음과 같이 바꿔 쓸 수 있다.
 
-    function calculatePrice({total = 0, tax = 0.1, tip = 0.05,} ={}) {
+    function calculatePrice({total = 0, tax = 0.1, tip = 0.05,} = {}) {
       return total + (total * tax) + (total * tip);
     }
 

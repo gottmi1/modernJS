@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // Promise.all은 모든 프로미스가 성공했을 때만 성공하는 하나의 프로미스를 반환한다.
+
+    // 두 가지 프로미스가 있는 다음 예제를 살펴보자.
+
+    const promise1 = new Promise((resolve,reject) => {
+      setTimeout(resolve,500,'first value');
+    });
+    // const promise2 = new Promise((resolve,reject) => {
+    //   setTimeout(resolve,1000,'second value');
+    // })
+    
+    // 둘중 하나를 실패로 만들기 위해 썼다.
+    const promise2 = new Promise((resolve, reject) => {
+      reject(Error("oooops eeror"));
+    })
+    
+    // promise1.then(data => {
+    //   console.log(data);
+    // })
+    // 500ms 후 first value출력
+
+    // promise2.then(data => {
+    //   console.log(data);
+    // }
+    // )
+    // 1000ms후 second value 출력
+
+    // 여기서 각 프로미스는 독립적으로 성공 처리된다.Promise.all을 사용하면 어떤 일이 발생하는지 다음 예제에서 살펴보자.
+
+    Promise
+    .all([promise1,promise2])
+    .then(data => {
+      const [promise1data , promise2data] = data;
+      console.log(promise1data,promise2data);
+    })
+    // promise2의 조건인 1000ms 후 fisr value, second value 함께 출력
+
+    // promise1 성공 후에도 promise2 성공까지 기다렸음을 알 수 있다.
+    // 비어있는 이터러블을 전달하면 이미 성공처리된 프로미스를 반환한다.
+
+    // 프로미스중 하나가 실패하면 다른 모든 프로미스가 성공하더라도 해당 실패에서 발생한 오류가 반환된다.
+
+    // all()은 두 프로미스중 하나라도 실패하면 전체를 실패로 처리.
+    .catch(err => {
+      console.log(err);
+    })
+
+    // 이와 대조적으로 Promise.race()는 이터러블에 포함된 프로미스들 중 가장 먼저 성공 또는 실패한 결과를 반환한다.
+    const promise3 = new Promise((resolve, reject) => {
+      setTimeout(resolve, 500, 'first value');
+    });
+    const promise4 = new Promise((resolve, reject) => {
+      setTimeout(resolve, 100, 'second value')
+    });
+
+    Promise.race([promise3,promise4]).then(function(value) {
+      console.log(value);
+      //둘 다 성공하지만, promise4가 더 빨리 성공.
+      // second value만 출력
+    })
+    // 비어있는 이터러블을 전달하면 .race()는 영원히 보류된 상태로 남아 있음에 주의하자.
+
+
+    // quiz
+
+    function myPromise() {
+      return new Promise((resolve, reject) => {
+        reject();
+      });
+    }
+
+    myPromise()
+    .then(() => {
+      console.log('1');
+    })
+    .catch(() => {
+      console.log('2');
+    })
+    .catch(() => {
+      console.log('3');
+    })
+    .then(() => {
+      console.log('4');
+    })
+
+    // 패턴 : catch가 하나 있을 떄는 catch 부터 모든행을 출력
+    // 그 뒤에 catch가 하나 더 있을경우 두번째 catch를 제외하고 출력
+  </script>
+</body>
+</html>
