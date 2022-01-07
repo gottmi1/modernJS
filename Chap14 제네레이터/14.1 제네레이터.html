@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 제네레이터 함수는 원하는만큼 코드 실행을 시작하거나 중지할 수 있는 함수이다.
+    // 중지된 제네레이터 함수를 다시 시작할 때 데이터를 추가로 전달하면서 재시작할 수 있다.
+    // 다음과 같이 코드를 작성한다
+
+    function* fruitList(){
+      yield 'Banana';
+      yield 'Apple';
+      yield 'Orange';
+    }
+
+    const fruits = fruitList();
+    //제네레이터
+    console.log(fruits.next());
+    //{value banana , done : false}
+    console.log(fruits.next());
+    // value apple
+    console.log(fruits.next());
+    // value orange
+    console.log(fruits.next());
+    // value undefined done true
+
+    // 코드를 하나씩 살펴보면
+    // functin* 을 사용허여 함수를 선언함
+    // 반환할 키워드 앞에 yield 키워드를 사용했다.
+    // .next()를 사용하여 함수의 실행을 시작한다.
+    // 마지막으로 .next()를 호출하면 undefined 값과 done : true가 반환된다.
+
+
+    // 이 예시의 함수는 각 .next() 호출 사이에서 일시 중지된 상태에 있다.
+
+
+
+  </script>
+
+</body>
+</html>
