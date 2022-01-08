@@ -18,11 +18,11 @@
         this.age = age;
         this.nickname = "";
       }
-      set nicknames(value) {
+      set nicknames(value) { // 무언가에 값을 셋팅할 때
         this.nickname = value;
         console.log(this.nickname);
       }
-      get nicknames() {
+      get nicknames() { // 무언가를 받아올 때
         console.log(`your nickname is ${this.nickname}`)
       }
     }
