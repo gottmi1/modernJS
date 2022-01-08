@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 아래는 프록시를 사용하여 15.3-1을 더 간결하게 작성한 코드를 살펴보자.
+
+    const dog = {
+      name : 'pup',
+      age : 7,
+    };
+
+    const handler = {
+      // 1. 게터는 객체와 속성 두 인수를 받아 해당 객체에 해당 속성이 존재하는지 확인하고, 존재하면 해당 속성의 값을 출력하고, 존재하지 않으면 사용자가 지정한 메세지를 출력한다.
+      get: (target, property) => {
+        property in target ? console.log(target[property]) : console.log('property not found');
+      },
+      // 2. 세터는 세 인수 (target , property, value)를 받는다. 여기에 특별한 부분은 없고 단순히 속성을 새 값으로 설정하고 출력했다.
+      set: (target,property,value) => {
+        target[property] = value;
+        console.log(target[property]);
+      }
+    };
+
+    const dogProxy = new Proxy(dog, handler);
+
+    dogProxy.name;
+    // pup
+    dogProxy.age;
+    // 7
+    dogProxy.name = "Max";
+    // Max
+    dogProxy.age = 8;
+    // 8
+    dogProxy.breed;
+    // property not found.
+
+    // 이 예시에서는 dog 객체를 만들었지만, 객체 내부에 게터와 세터를 따로 정의하지 않았다.
+    // 대신 하나의 게터와 세터로 모든 속성을 처리할 수 있게 handler를 만들었다.
+    // 1. 게터는 객체와 속성 두 인수를 받아 해당 객체에 해당 속성이 존재하는지 확인하고, 존재하면 해당 속성의 값을 출력하고, 존재하지 않으면 사용자가 지정한 메세지를 출력한다.
+    // 2. 세터는 세 인수 (target , property, value)를 받는다. 여기에 특별한 부분은 없고 다순히 속성을 새 값으로 설정하고 출력했다.
+
+    // 이와 같이 프록시를 사용하여 두 가지를 달성했다.
+    // - 더 짧고 깔끔한 코드
+    // - 사용할 수 없는 속성에 접근할 때 사용자에게 지정 메시지를 출력
+  </script>
+</body>
+</html>

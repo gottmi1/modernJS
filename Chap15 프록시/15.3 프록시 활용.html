@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 프록시는 매우 유용하다. 일례로 데이터를 검증하는 데 사용할 수 있다.
+
+    const validateAge = {
+      set: function(object,property,value){ // set = 설정할 때 마다 실행이라고 생각해도 될듯
+        if (property === 'age') {
+          if ( value < 18 ) {
+            throw new Error('you are too young!');
+          }
+          else {
+            // 기본 동작
+            object[property] = value;
+            return true;
+          }
+        }
+      }
+    };
+
+    const user = new Proxy({} ,validateAge)
+
+    // user.age = 17;
+    // unchaught Error : you are too young!
+    console.log(user.age = 21);
+
+    // user 객체의 age 속성을 설정할 때 마다 validateAge 함수가 실행되어, age속성의 값이 18보다 작은 경우에 Error를 발생시킨다.
+    // 프록시는 동일한 내용의 게터와 세터를 많은 속성에 적용해야 할 때 매우 유용하다.
+    // 이럴 때 프록시를 사용하면 하나의 게터와 하나의 세터만 정의하면 된다.
+
+    
+  </script>
+</body>
+</html>
