@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    
+    // 앞서 살펴본 것처럼 프로미스는 비동기 프로그맹이에 매우 유용하며, 
+    // 제너레이터와 같이 사용하면 콜백 지옥같은 문제를 방지할 수 있는 매우 강력한 도구이다.
+      // 
+    // ES2017에서 도입된 비동기(async) 함수에 대해선 따로 검색해봐야 함.
+    // 그러나 비동기 함수의 작동 방식은 여기서 다룰 내용을 기반으로 한다.
+      // 
+    // 비동기에 대해선 19장에서 자세하게.
+      // 
+    // 제너레이터를 프로미스와 함께 사용하면 마치 동기 코드처럼 느껴지게 비동기 코드를 작성할 수 있다.
+    // 프로미스가 완료될 때까지 기다렸다가, 
+    // 완료될 때 반환된 값을, 
+    // .netx() 호출 시점에, 
+    // 제너레이터로 다시 전달,하는 다음 코드를 살펴보자.
+
+    const myPromise = () => new Promise((resolve,reject) => {
+      resolve("our value is...");
+    });
+
+    function* gen() {
+      let result = "";
+      // 프로미스를 반환
+      yield myPromise().then(data => { result = data});
+      // 프로미스의 결과를 기다린 후 이 값을 사용
+      yield result + ' 2';
+    }
+
+    // 비동기 함수를 호출
+    const asyncFunc = gen();
+    const val1 = asyncFunc.next();
+
+    console.log(val1);
+    console.log(val1);
+    // vlaue : Promise, done : false
+    // 프로미스가 완료되기를 기다린 후 .next()를 호출
+
+    val1.value.then(() => {
+      console.log(asyncFunc.next());
+    });
+    // value : our value is... 2 , done false
+
+    // .next()를 처음 호출하면 프로미스를 반환한다.
+    // 해당 프로미스가 완료되기를 기다렸다가 .next()를 다시 호출하면, 
+    // 제너레이터 내부에서는 프로미스에서 반환한 값을 사용하여 작업을 수행한다.
+    // (이 예제에서는 반환된 값에 문자열 ' 2'를 이어 붙였다.)
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+
+    function* gen() {
+      try{
+        yield 'Trying...';
+        yield 'Trying harder...';
+        yield 'Trying even harder...';
+      }
+      catch(err) {
+        console.log("Error : " + err);
+      }
+    }
+
+    const myGenerator = gen();
+    console.log(myGenerator.next());
+    // Trying...
+    console.log(myGenerator.next());
+    // Trying harder...
+    console.log(myGenerator.throw("ooops"));
+    // value : undefined
+
+    // .throw()를 호출했을 때 제너레이터는 오류를 반환했고, 실행할 수 있는 yield가 하나 남았음에도 종료되었다.
+
+  </script>
+</body>
+</html>
