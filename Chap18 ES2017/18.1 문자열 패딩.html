@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // ES2017에서는 많은 멋진 기능이 새롭게 도입되었다.
+
+    // 문자열 끝 부분 또는 시작 부분에 패딩을 추가할 수 있다. 각각,padEnd()와 padStart()를 쓴다.
+
+    console.log("hello".padStart(6));
+    // " hello"
+    console.log("hello".padEnd(6));
+    // "hello "
+
+    // 여기서 패딩으로 6을 지정했는데 두 경우 모두 1개의 공간만 확보된 이유는 무엇이까?
+    // 예제에서 "hello"는 5글자이고 패딩은 6으로 지정되었기 때문에 빈 공간이 1개만 남는다.
+    // padStart()와 padEnd()는 결국 이 1개의 빈 공간을 채워넣게 된다.
+
+    console.log("hi".padStart(10));
+    // 10 - 2개의 문자열 = 8개의 스페이스
+    //         hi
+    console.log("welcome".padStart(10));
+    //    welcome       
+    // 10 - 6개의 문자열 = 4개의 스페이스
+
+
+    // - padStart()와 오른쪽 정렬
+
+    // 문자열을 오른쪽 정렬하고 싶을 때 padStart()를 사용할 수 있다.
+
+    const strings = ["short","medium length","very long strings"];
+
+    const longestString = strings.sort( str => str.length).map( str => str.length)[2];
+
+    strings.forEach(str => console.log(str.padStart(longestString)));
+
+    // 먼저 가장 긴 문자열을 찾아서 그 길이를 측정했다. 
+    // 가장 긴 무자열의 길이를 기준으로 모든 문자열에 padStart()를 적용하면 모든 문자열을 완벽하게 오른쪽 정렬 시킬 수 있다.
+
+
+    // - 패딩에 사용자 지정 값 추가
+
+    // 패딩은 공백을 추가하는 것 뿐만 아니라 문자열이나 숫자를 덧붙이는 데에도 사용할 수 있다.
+
+    console.log("hello".padEnd(13, " albert"));
+    // "hello albert"
+    console.log("1".padEnd(5, 0));
+    // 10000
+    console.log("99".padStart(3, 0));
+    // 099
+  </script>
+</body>
+</html>

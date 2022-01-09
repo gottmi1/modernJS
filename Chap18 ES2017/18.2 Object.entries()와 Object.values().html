@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 객체 내부의 값에 쉽게 접근하는 방법도 도입되었다.
+    
+    const family = {
+      father : "Kim",
+      mother : "Jin",
+      son : "Won"
+    }
+
+    // 이전 버전의 자바스크립트에서는 다음과 같은 방법으로 접근
+    console.log(Object.keys(family));
+    // (3) ['father', 'mother', 'son']
+    console.log(family.father);
+    // Kim
+
+    // 즉 Object.keys()는 개체의 키만 반환하기 때문에, 값에 접근하기 위해서는 해당 키를 먼저 얻은 다음, 그 키를 통해 접근해야 했다.
+    // 이제 다음과 같이 객체에 접근하는 두가지 방법이 더 생겼다.
+
+    console.log(Object.values(family));
+    // (3) ['Kim', 'Jin', 'Won']
+    console.log(Object.entries(family));
+    // (3) [Array(2), Array(2), Array(2)]
+    // 0: (2) ['father', 'Kim']
+    // 1: (2) ['mother', 'Jin']
+    // 2: (2) ['son', 'Won']
+
+    // Object.values()는 모든 값이 담긴 배열을 반환
+    // Object.entries()는 키와 값을 모두 포함하는 배열을 반환한다.
+
+
+  </script>
+</body>
+</html>
