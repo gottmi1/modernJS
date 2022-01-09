@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 다음 코드를 보자
+    function walk(amount) {
+      return new Promise((resolve , reject) => {
+        if (amount < 500) {
+          reject("the value is too small");
+        }
+        setTimeout(() => resolve(`you walked for ${amount}ms`), amount);
+      });
+    }
+
+    // 비동기 함수 선언
+    async function go() {
+      // 프로미스가 완료될 떄까지 기다리기 위해 await 키워드를 사용
+      const res = await walk(500);
+      console.log(res);
+      const res2 = await walk(900);
+      console.log(res2);
+      const res3 = await walk(600);
+      console.log(res3);
+      const res4 = await walk(700);
+      console.log(res4);
+      const res5 = await walk(400);
+      console.log(res5);
+      console.log('finished')
+    }
+
+    go();
+    // 500 -> 900 -> 600 -> 700 -> Error(amount가 500보다 작아졌기 때문에)
+
+    // 이 예제 코드를 하나씩 분석해보자.
+
+    // 1. 비동기 함수를 만들려면 `함수 앞에 async 키워드`를 넣어야 한다.
+    // 2. 해당 키워드는 자바스크립트에서 `항상 프로미스를 반환하도록 지시`한다
+    // 3. 비동기 함수 내에서 프로미스가 아닌 값을 반환하게 작성하면 자바스크립트가 해당 값을 `자동으로 프로미스로 감싼 후 반환`한다
+    // 4. `await 키워드는 비동기  함수 내에서만 작동`한다
+    // 5. 이름에서 알 수 있듯이 `await 키워드는 프로미스가 결과를 반환할 떄까지 기다리도록 자바스크립트에 지시`한다
+
+    // 비동기 함수가 아닌 곳에서 await을 사용하려고 하면 어떤일이 발생할까?
+
+    // 일반 함수에 await 키워드를 사용한 경우
+
+    // function func() {
+    //   let promise = Promise.resolve();
+    //   let result = await promise;
+    // }
+
+    // func();
+
+    // Uncaught SyntaxError: await is only valid in async functions and the top level bodies of modules
+
+    // 코드의 최상위레벨에서 await을 사용한 경우
+
+    // let response = Promise.resolve("hi");
+    // let result = await response;
+
+    // Uncaught SyntaxError: await is only valid in async functions and the top level bodies of modules
+    
+    // await은 비동기 함수에서만 사용할 수 있다는 걸 기억하자.
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // 일반적인 프로미스에서는 .catch()를 사용하여 프로미스가 반환하는 오류들을 처리한다.
+    // async/await 문법을 사용할 때에도 크게 다르지 않다.
+
+    // async function asyncFunc() {
+    //   try{
+    //     let response = await fetch('your-url');
+    //   } catch (err) { 
+    //     console.log(err);
+    //   }
+    // }
+
+    // asyncFunc();
+    // Failed to load resource: the server responded with a status of 404 (Not Found)
+
+    // 보통 try,catch 구문을 사용하여 오류를 처리하지만, 해당 구문 없이도 다음과 같이 오류를 처리할 수 있다.
+
+    async function asyncFunc() {
+      let response = await fetch('your-url');
+    } 
+    asyncFunc();
+
+    asyncFunc().catch(console.log);
+
+  </script>
+</body>
+</html>
